@@ -13,10 +13,11 @@ for (var i = 0; i < buttons.length; i++) {
     button.attr("id", buttons[i]);
     $("#buttons").append(button);
 }
-$("#input").on("click", function(){
-  
-    alert(this);
-});
+// $("#inpt").on("click", function(event){
+//     event.preventDefault();
+//    // var a = $("#inpt").val();
+//     alert(a);
+// });
 
 $("button").on("click", function () {
     var type = $(this).attr("id");
