@@ -1,6 +1,6 @@
 
 
-var buttons = ["WALKING","RUNNING","SKATEBOARD","ICESKATES","BICYCLES","HOVERBOARDS","SCOOTERS",
+var buttons = ["WALKING","RUNNING","SKATEBOARD","SNOWBOARDS","BICYCLES","HOVERBOARDS","SCOOTERS",
 "MOTORCYCLES","CARS","TRUCKS","SEMI TRUCKS","TRAINS","AIRPLANES","BUILDINGS","NATURAL"];
 
 var apiKey = "VjA2J8r6s0BESVfnG7Wroz0zShvp2WGP";
@@ -18,9 +18,11 @@ for (var i = 0; i < buttons.length; i++) {
 $("button").on("click", function() {
     var type = $(this).attr("id");
     console.log(type); 
+if(this) {
+    $("#row1").empty();
+}
 
-var query ="https://api.giphy.com/v1/gifs/search?api_key=VjA2J8r6s0BESVfnG7Wroz0zShvp2WGP&q=" +type+ "+crash&limit=25&offset=0&rating=R&lang=en";
-console.log(query);
+var query ="https://api.giphy.com/v1/gifs/search?api_key=VjA2J8r6s0BESVfnG7Wroz0zShvp2WGP&q=" +type+ "+crash&limit=10&offset=0&rating=R&lang=en";
 
 $.ajax({
     url: query,
@@ -31,15 +33,32 @@ $.ajax({
     gifGenerator(results);
 
 function gifGenerator(results) {
-for ( var i = 0; i < 10; i++ ) {
-var col = $("<div>");
-col.attr("id", "col"+ i);
-col.addClass("gif");
-col.html("<img src='" + results[i].images.fixed_height.url + "'>");
-$("#row1").append(col);
-
-  }
+    for ( var i = 0; i < 10; i++ ) {
+    var col = $("<div>");
+    col.attr("data-animate", results[i].images.fixed_height.url);
+    col.attr("data-still", results[i].images.fixed_height_still.url);
+    col.attr("data-state", "still");
+    col.addClass("gif");
+    col.html("<img id='abc' src='" + results[i].images.fixed_height_still.url+ "'>");  //results[i].images.fixed_height.url 
+    $("#row1").append(col);
 }
+
+}
+$("#abc").on("click", function()   {
+
+   var state = $(this).attr("data-state");
+   console.log(state);
+   if (state === "still") {
+    console.log(this);
+
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
+   }else{
+       $(this).attr("src", $(this).attr("data-still"));
+       $(this).attr("data-state", "still");
+   }
+
+});
 
  });
 
