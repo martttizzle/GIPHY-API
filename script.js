@@ -33,21 +33,23 @@ $.ajax({
     gifGenerator(results);
 
 function gifGenerator(results) {
-    for ( var i = 0; i < 10; i++ ) {
+    for (var i = 0; i < 10; i++ ) {
     var col = $("<div>");
-    col.attr("data-animate", results[i].images.fixed_height.url);
-    col.attr("data-still", results[i].images.fixed_height_still.url);
-    col.attr("data-state", "still");
     col.addClass("gif");
-    col.html("<img id='abc' src='" + results[i].images.fixed_height_still.url+ "'>");  //results[i].images.fixed_height.url 
+    col.at
+    col.html("<img data-state='still' data-still='" + results[i].images.fixed_height_still.url+"'" + "data-animate='" + results[i].images.fixed_height.url+"'" +  "class='abc'" + "src='"+ results[i].images.fixed_height_still.url+"'>"); 
     $("#row1").append(col);
 }
+function ratings() {
+    for ( )
+}
 
 }
-$("#abc").on("click", function()   {
+
+
+$(".abc").on("click", function()   {
 
    var state = $(this).attr("data-state");
-   console.log(state);
    if (state === "still") {
     console.log(this);
 
