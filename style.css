@@ -1,9 +1,15 @@
 #body {
-    color: green;
-    background-color: red;
+
+    color: white;
+    background-color: lightcoral;
 }
 
 .buttons {
     margin: 5px;
+
+}
+
+.abc, p {
+    margin: 1px 10px;
 }
 
